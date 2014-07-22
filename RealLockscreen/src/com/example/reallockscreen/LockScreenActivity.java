@@ -2,6 +2,8 @@ package com.example.reallockscreen;
 
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -18,6 +20,7 @@ private ImageView playstore, phone, music ,messaging,kakaotalk,gmail,camera;
 protected void onCreate(Bundle savedInstanceState){
 super.onCreate(savedInstanceState);
 setContentView(R.layout.reallay);
+final String phonenumber;
 playstore = (ImageView)findViewById(R.id.imageView1); 
 phone = (ImageView)findViewById(R.id.imageView2); 
 music = (ImageView)findViewById(R.id.imageView3); 
@@ -30,6 +33,7 @@ camera = (ImageView)findViewById(R.id.imageView7);
 getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED 
 | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 
+Bundle intent = getIntent().getExtras();
 
 playstore.setOnClickListener(new OnClickListener(){
 	@Override
@@ -54,6 +58,28 @@ kakaotalk.setOnClickListener(new OnClickListener(){
 	
 	
 });
+
+phone.setOnClickListener(new OnClickListener(){
+	@Override
+    public void onClick(View v) {	
+		
+	
+		Intent intent = getIntent();
+        String str1;
+         str1= intent.getExtras().getString("TEXT");
+		
+		
+        Intent intent2 = new Intent (Intent.ACTION_CALL,Uri.parse("tel:"+str1));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+        startActivity(intent2);
+	
+	}
+
+	
+});
+
+
+
 
 
 }
