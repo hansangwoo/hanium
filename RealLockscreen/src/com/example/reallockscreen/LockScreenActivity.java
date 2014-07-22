@@ -1,24 +1,32 @@
 package com.example.reallockscreen;
 
 
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
 public class LockScreenActivity extends Activity{
 private ImageView playstore, phone, music ,messaging,kakaotalk,gmail,camera;
+private RelativeLayout mview;
+
 @Override
 protected void onCreate(Bundle savedInstanceState){
 super.onCreate(savedInstanceState);
+
 setContentView(R.layout.reallay);
 final String phonenumber;
 playstore = (ImageView)findViewById(R.id.imageView1); 
@@ -29,17 +37,20 @@ kakaotalk = (ImageView)findViewById(R.id.imageView5);
 gmail = (ImageView)findViewById(R.id.imageView6); 
 camera = (ImageView)findViewById(R.id.imageView7); 
 
-
+mview=(RelativeLayout)findViewById(R.layout.reallay);
 getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED 
 | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 
 Bundle intent = getIntent().getExtras();
+
+
 
 playstore.setOnClickListener(new OnClickListener(){
 	@Override
     public void onClick(View v) {	
 		Toast.makeText(LockScreenActivity.this, "권한이 없는 사용자 입니다.", Toast.LENGTH_LONG).show();
 		setContentView(R.layout.lockscreen2);
+		
 	}
 	
 	
@@ -83,6 +94,8 @@ phone.setOnClickListener(new OnClickListener(){
 
 
 }
+
+
 
 
 }
